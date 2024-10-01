@@ -7,7 +7,8 @@ const copy = async () => {
   const src = path.resolve("files");
   const dest = path.resolve("files_copy");
 
-  if (!fs.existsSync(src) || fs.existsSync(dest)) throw new Error(eMsg);
+  fs.access(src, fs.constants.F_OK, e => {if (e) throw new Error(eMsg)})
+  fs.access(dest, fs.constants.F_OK, e => {if (!e) throw new Error(eMsg)})
   
   fs.cp(src, dest, {recursive: true}, (err) => {
     if (err) {

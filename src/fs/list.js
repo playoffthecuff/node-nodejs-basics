@@ -2,13 +2,19 @@ import path from "node:path";
 import fs from "node:fs";
 
 const list = async () => {
-  const eMsg = 'FS operation failed'
+  const eMsg = "FS operation failed";
 
-  const dir = path.resolve('files')
+  const dir = path.resolve("files");
 
-  if (!fs.existsSync(dir)) throw new Error(eMsg)
+  fs.access(dir, fs.constants.F_OK, (e) => {
+    if (e) {
+      throw new Error(eMsg);
+    } else {
+      fs.readdir(dir, (e,f) => {if (!e) console.log(f)})
+    }
+  });
 
-  fs.readdirSync(dir).forEach(f => console.log(f))
+
 };
 
 await list();

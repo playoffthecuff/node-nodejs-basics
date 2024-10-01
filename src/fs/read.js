@@ -7,7 +7,7 @@ const read = async () => {
   const dir = path.resolve("files");
   const src = path.join(dir, "fileToRead.txt");
 
-  if (!fs.existsSync(src)) throw new Error(eMsg);
+  fs.access(src, fs.constants.F_OK, e => {if (e) throw new Error(eMsg)})
 
   fs.readFile(src, 'utf8', (e,d) => {
     if (e) {

@@ -8,7 +8,8 @@ const rename = async () => {
   const src = path.join(dir, "wrongFilename.txt")
   const target = path.join(dir, "properFilename.md")
 
-  if (!fs.existsSync(src) || fs.existsSync(target)) throw new Error(eMsg);
+  fs.access(src, fs.constants.F_OK, e => {if (e) throw new Error(eMsg)})
+  fs.access(target, fs.constants.F_OK, e => {if (!e) throw new Error(eMsg)})
 
   fs.rename(src, target, (err) => {
     if (err) {

@@ -7,7 +7,7 @@ const remove = async () => {
   const dir = path.resolve("files");
   const src = path.join(dir, "fileToRemove.txt");
 
-  if (!fs.existsSync(src)) throw new Error(eMsg);
+  fs.access(src, fs.constants.F_OK, e => {if (e) throw new Error(eMsg)})
 
   fs.rm(src, (e) => {
     if (e) {
