@@ -1,9 +1,9 @@
 import {createWriteStream} from "node:fs"
 import {stdin} from "node:process"
-import {resolve} from "node:path"
+import {join} from "node:path"
 
 const write = async () => {
-  stdin.pipe(createWriteStream(resolve('files/fileToWrite.txt')))
+  stdin.pipe(createWriteStream(join(import.meta.dirname, 'files/fileToWrite.txt')))
 };
 
 await write();

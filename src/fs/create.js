@@ -3,8 +3,8 @@ import fs from "node:fs"
 
 const create = async () => {
 
-  const dir = path.resolve('files')
-  const targetPath = path.join(dir, 'fresh.txt')
+  const dir = import.meta.dirname
+  const targetPath = path.join(dir, 'files/fresh.txt')
 
   const content = 'I am fresh and young'
   const eMsg = 'FS operation failed'

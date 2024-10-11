@@ -4,7 +4,7 @@ import fs from "node:fs";
 const list = async () => {
   const eMsg = "FS operation failed";
 
-  const dir = path.resolve("files");
+  const dir = path.join(import.meta.dirname, "files");
 
   fs.access(dir, fs.constants.F_OK, (e) => {
     if (e) {

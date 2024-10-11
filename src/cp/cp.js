@@ -1,9 +1,9 @@
 import {fork} from 'node:child_process'
-import {resolve} from 'node:path'
+import {join} from 'node:path'
 import {stdin, stdout} from 'node:process'
 
 const spawnChildProcess = async (args) => {
-  const cp = fork(resolve('files/script.js'), args,{
+  const cp = fork(join(import.meta.dirname, 'files/script.js'), args,{
     stdio: ['pipe', 'pipe', 2, 'ipc'],
   })
   

@@ -1,10 +1,10 @@
 import {createReadStream, createWriteStream} from "node:fs"
-import {resolve} from "node:path"
+import {join} from "node:path"
 import {createGunzip} from "node:zlib"
 import { pipeline } from "node:stream";
 
 const decompress = async () => {
-  pipeline(createReadStream(resolve('files/archive.gz')), createGunzip(), createWriteStream(resolve('files/fileToCompress.txt')), e => {if (e) {console.error(e)}; process.exitCode = 1})
+  pipeline(createReadStream(join(import.meta.dirname, 'files/archive.gz')), createGunzip(), createWriteStream(join(import.meta.dirname, 'files/fileToCompress.txt')), e => {if (e) {console.error(e)}; process.exitCode = 1})
 };
 
 await decompress();

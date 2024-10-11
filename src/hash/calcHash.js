@@ -4,9 +4,8 @@ import path from "node:path"
 import process from "node:process"
 
 const calculateHash = async () => {
-  const dir = path.resolve('files')
-  const src = path.join(dir, 'fileToCalculateHashFor.txt')
-  console.log(src)
+  const dir = import.meta.dirname
+  const src = path.join(dir, 'files/fileToCalculateHashFor.txt')
 
   const hash = createHash("sha256")
   const input = fs.createReadStream(src)

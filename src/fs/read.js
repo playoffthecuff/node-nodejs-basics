@@ -4,8 +4,8 @@ import path from "node:path";
 const read = async () => {
   const eMsg = "FS operation failed";
 
-  const dir = path.resolve("files");
-  const src = path.join(dir, "fileToRead.txt");
+  const dir = import.meta.dirname;
+  const src = path.join(dir, "files/fileToRead.txt");
 
   fs.access(src, fs.constants.F_OK, e => {if (e) throw new Error(eMsg)})
 

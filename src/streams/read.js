@@ -3,8 +3,8 @@ import fs from "node:fs"
 import path from "node:path"
 
 const read = async () => {
-  const dir = path.resolve("files")
-  const src = path.join(dir, "fileToRead.txt")
+  const dir = import.meta.dirname
+  const src = path.join(dir, "files/fileToRead.txt")
 
   const input = fs.createReadStream(src)
   input.pipe(process.stdout)

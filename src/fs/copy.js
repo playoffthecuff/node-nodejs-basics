@@ -4,8 +4,8 @@ import fs from "node:fs";
 const copy = async () => {
   const eMsg = "FS operation failed";
 
-  const src = path.resolve("files");
-  const dest = path.resolve("files_copy");
+  const src = path.join(import.meta.dirname, "files");
+  const dest = path.resolve(import.meta.dirname, "files_copy");
 
   fs.access(src, fs.constants.F_OK, e => {if (e) throw new Error(eMsg)})
   fs.access(dest, fs.constants.F_OK, e => {if (!e) throw new Error(eMsg)})

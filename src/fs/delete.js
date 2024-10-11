@@ -4,8 +4,8 @@ import fs from "node:fs";
 const remove = async () => {
   const eMsg = "FS operation failed";
 
-  const dir = path.resolve("files");
-  const src = path.join(dir, "fileToRemove.txt");
+  const dir = import.meta.dirname
+  const src = path.join(dir, "files/fileToRemove.txt");
 
   fs.access(src, fs.constants.F_OK, e => {if (e) throw new Error(eMsg)})
 

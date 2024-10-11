@@ -1,11 +1,10 @@
 import fs from "node:fs"
-import path from "node:path"
+import {join} from "node:path"
 import {createGzip} from "node:zlib"
 import {pipeline} from "node:stream"
 
 const compress = async () => {
-  pipeline(fs.createReadStream(path
-    .resolve('files/fileToCompress.txt')), createGzip(), fs.createWriteStream(path.resolve('files/archive.gz')),
+  pipeline(fs.createReadStream(join(import.meta.dirname, 'files/fileToCompress.txt')), createGzip(), fs.createWriteStream(join(import.meta.dirname, 'files/archive.gz')),
     (e) => {if (e) {console.error(e); process.exitCode = 1}})
 };
 
